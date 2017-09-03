@@ -1,4 +1,4 @@
-# This is ansible playbook for Apache Mesos.(for ubuntu xenial) #
+# This is ansible playbook for Apache Mesos for Ubuntu Xenial. #
 
 ## How to use ##
 
