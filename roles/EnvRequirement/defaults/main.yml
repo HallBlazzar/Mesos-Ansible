@@ -1,0 +1,3 @@
+Mesos_key_server: keyserver.ubuntu.com
+Mesos_key_id: 'E56151BF'
+Mesos_repo: deb http://repos.mesosphere.io/ubuntu xenial main

@@ -1,0 +1,2 @@
+slave_ip_file: /etc/mesos-slave/ip
+slave_hostname_file: /etc/mesos-slave/hostname

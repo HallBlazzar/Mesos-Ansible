@@ -1,0 +1,4 @@
+- name: Set up zookeeper connection info for mesos
+  template:
+    src: zk.j2
+    dest: "{{ connection_info_file }}"

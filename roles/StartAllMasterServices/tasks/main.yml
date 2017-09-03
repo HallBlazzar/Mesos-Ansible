@@ -1,0 +1,17 @@
+- name: Enable zookeeper, mesos, marathon
+  systemd:
+    name: "{{ item }}"
+    enabled: true
+  with_items:
+    - zookeeper
+    - mesos-master
+    - marathon
+
+- name: Start zookeeper, mesos, marathon
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+  with_items:
+    - zookeeper
+    - mesos-master
+    - marathon

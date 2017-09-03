@@ -1,0 +1,5 @@
+master_id_file: /etc/zookeeper/conf/myid
+zoo_cfg_file: /etc/zookeeper/conf/zoo.cfg
+master_ip_file: /etc/mesos-master/ip
+master_hostname_file: /etc/mesos-master/hostname
+marathon_config_dir_path: /etc/marathon/conf

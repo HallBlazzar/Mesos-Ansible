@@ -1,0 +1,25 @@
+- name: Disable zookeeper, mesos-master
+  systemd:
+    name: "{{ item }}"
+    enabled: false
+  with_items:
+    - zookeeper
+    - mesos-master
+
+- name: Stop zookeeper, mesos-master
+  systemd:
+    name: "{{ item }}"
+    state: stopped
+  with_items:
+    - zookeeper
+    - mesos-master
+
+- name: Enable mesos-slave
+  systemd:
+    name: mesos-slave
+    enabled: true
+
+- name: Start mesos-slave
+  systemd:
+    name: mesos-slave
+    state: restarted

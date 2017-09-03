@@ -1,0 +1,8 @@
+zk://
+{%- for master in groups['masters'] -%}
+    {{ hostvars[master]['ansible_enp0s8']['ipv4']['address'] }}:2181
+    {%- if not loop.last -%}
+    ,
+    {%- endif %}
+{%- endfor -%}
+/mesos

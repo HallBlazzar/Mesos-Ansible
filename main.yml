@@ -1,0 +1,69 @@
+- name: Prepare environment
+  hosts: all
+  become: true
+
+  roles:
+    - role: EnvRequirement
+
+- name: Install mesosphere on masters
+  hosts: masters
+  become: true
+
+  tasks:
+    - name: Install zookeeper, mesos, marathon, chronos
+      apt:
+        name: "{{ item }}"
+        update_cache: true
+      with_items:
+        - zookeeper
+        - zookeeperd
+        - mesos
+        - marathon
+        - chronos
+
+- name: Install mesos on slaves
+  hosts: slaves
+  become: true
+
+  tasks:
+    - name: Install mesos, zookeeper
+      apt:
+        name: mesos
+        update_cache: true
+
+- name: Configure connction
+  hosts: all
+  become: true
+
+  roles:
+    - role: ConfigureCluster
+
+- name: Configure and start masters
+  hosts: masters
+  become: true
+
+  roles:
+    - role: ConfigureMasters
+    - role: StartAllMasterServices
+
+- name: Install mesos on slaves
+  hosts: slaves
+  become: true
+
+  tasks:
+    - name: Install zookeeper, mesos
+      apt:
+        name: "{{ item}}"
+        update_cache: true
+      with_items:
+        - zookeeper
+        - zookeeperd
+        - mesos
+
+- name: Configure and start slaves
+  hosts: slaves
+  become: true
+
+  roles:
+    - role: ConfigureSlaves
+    - role: StartAllSlaveServices

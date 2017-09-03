@@ -1,0 +1,13 @@
+- hosts: all
+
+  gather_facts: no
+
+  tasks:
+   - name: Update aptitude
+     raw: sudo apt-get update -qq
+
+   - name: Insatll python27
+     raw: sudo apt-get install -qq python2.7
+
+   - name: Install aptitude package
+     raw: sudo apt-get install -qq aptitude

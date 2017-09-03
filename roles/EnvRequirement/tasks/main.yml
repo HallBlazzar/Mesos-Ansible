@@ -1,0 +1,13 @@
+- name: Import key
+  apt_key:
+    keyserver: '{{ Mesos_key_server }}'
+    id: '{{ Mesos_key_id }}'
+
+- name: Add repository
+  apt_repository:
+    repo: '{{ Mesos_repo }}'
+    state: present
+
+- name: Update cache
+  apt:
+    update_cache: true

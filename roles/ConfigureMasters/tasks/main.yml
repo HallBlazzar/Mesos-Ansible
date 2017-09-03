@@ -1,0 +1,33 @@
+- name: Configure zookeeper id of master hosts
+  template:
+    src: myid.j2
+    dest: "{{ master_id_file }}"
+
+- name: Configure mapping of zookeeper if to actual hosts
+  template:
+    src: zoo.cfg.j2
+    dest: "{{ zoo_cfg_file }}"
+
+- name: Specify ip of each master nodes itself
+  template:
+    src: ip.j2
+    dest: "{{ item }}"
+  with_items:
+    - "{{ master_ip_file }}"
+    - "{{ master_hostname_file }}"
+
+- name: Generate directory to store configuration of marathon
+  file:
+    path: "{{ marathon_config_dir_path }}"
+    state: directory
+    recurse: true
+
+- name: Genrate hostname config for marathon
+  template:
+    src: ip.j2
+    dest: "{{ marathon_config_dir_path }}/hostname"
+
+- name: Generate marathon zookeeper config
+  template:
+    src: marathon_zk.j2
+    dest: "{{ marathon_config_dir_path }}/zk"

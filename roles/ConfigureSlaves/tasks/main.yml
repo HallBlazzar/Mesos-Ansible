@@ -1,0 +1,7 @@
+- name: Specify ip of each master nodes itself
+  template:
+    src: ip.j2
+    dest: "{{ item }}"
+  with_items:
+    - "{{ slave_ip_file }}"
+    - "{{ slave_hostname_file }}"
